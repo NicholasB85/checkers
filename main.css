@@ -1,0 +1,59 @@
+body {
+    font-family: Arial; 
+    margin: 0; 
+    padding: 0; 
+    background: yellowgreen;
+}
+            
+    #board {
+        position: fixed; 
+        margin: 5px; 
+        box-shadow: 0 0 5px 2px black; 
+        background: brown;
+    }
+            
+    .cell {
+        position: absolute; 
+        width: 12.5%; 
+        height: 12.5%; 
+        background: black;
+    }
+            
+    .sq {
+        width: 20px; 
+        height: 20px; 
+        border: 1px solid yellow;
+        display: inline-block;
+    }
+            
+    .c {
+        position: absolute; 
+        width: 92%; 
+        height: 92%; 
+        border-radius: 100%; 
+        left: 4%; 
+        top: 4%;
+    }
+            
+    .b {
+        background: white; 
+        background: radial-gradient(red 57%, white); 
+        box-shadow: 0 0 0 1px grey;
+    }
+            
+    .redKing {
+        background: red; 
+        background: radial-gradient(orange 1%, white); 
+        box-shadow: 0 0 0 1px royalblue;
+    }
+            
+    .w {
+        background: white; 
+        background: radial-gradient(white 57%, black);
+    }
+            
+    .whiteKing {
+        background:  white; 
+        background: radial-gradient(white 27%, red); 
+        box-shadow: 0 0 0 2px red;
+    }

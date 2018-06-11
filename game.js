@@ -12,7 +12,7 @@ function Game(squares,) {
 		if (x < 0 || x > 7 || y < 0 || y > 7) {return null;}
 		
 		// Convert to square
-		var index = y*4 + Math.floor(x/2);
+		let index = y*4 + Math.floor(x/2);
 		return index >= 0 && index < squares.length? this.squares[index] : null;
 	}
 
@@ -20,18 +20,18 @@ function Game(squares,) {
 	* is out of bounds, the value of that square in the array returned is null. */
 	this.getAdjacent = function(square) {
 		if (!square) {return [];}
-		var x = square.x, y = square.y;
+		let x = square.x, y = square.y;
 		return [this.get(x-1,y-1), this.get(x+1,y-1), this.get(x-1,y+1), this.get(x+1,y+1)];
 	}
 
 	/** Validates a move. */
 	this.isValid = function(start, end, ignoreTurn) {
 		if (!start || !end || start.isEmpty() || !end.isEmpty()) {return false;}
-		var dist = start.dist(end);
+		let dist = start.dist(end);
 		
 		// Check if valid move for checker
-		var isKing = start.isKing();
-		var isWhiteChecker = start.isWhiteChecker();
+		let isKing = start.isKing();
+		let isWhiteChecker = start.isWhiteChecker();
 		if (!ignoreTurn && (isWhiteChecker ^ !game.isP1Turn)) { // not that player's turn
 			return false;
 		}
@@ -44,19 +44,19 @@ function Game(squares,) {
 		}
 		
 		// Check distance
-		var isSkip = Math.abs(dist.dx) == 2;
+		let isSkip = Math.abs(dist.dx) == 2;
 		if (Math.abs(dist.dx) != Math.abs(dist.dy) || Math.abs(dist.dx) > 2 || Math.abs(dist.dx) == 0) {
 			return false;
 		}
-		var middle = isSkip? game.get(start.x + dist.dx/2, start.y + dist.dy/2) : null;
+		let middle = isSkip? game.get(start.x + dist.dx/2, start.y + dist.dy/2) : null;
 		if (middle && !middle.isEnemy(start)) {
 			return false;
 		}
 		
 		// Check if skip available
-		var skipsAvail = false;
-		var checkers = game.isP1Turn? game.getBlackCheckers() : game.getWhiteCheckers();
-		for (var i=0; i<checkers.length; i++) {
+		let skipsAvail = false;
+		let checkers = game.isP1Turn? game.getBlackCheckers() : game.getWhiteCheckers();
+		for (let i=0; i<checkers.length; i++) {
 			if (checkers[i].getSkips(game).length > 0) {
 				skipsAvail = true;
 				break;
@@ -76,12 +76,12 @@ function Game(squares,) {
 		
 		// No checkers
 		if (!squares || squares.length == 0) {return true;}
-		var b = this.getBlackCheckers(), w = this.getWhiteCheckers();
+		let b = this.getBlackCheckers(), w = this.getWhiteCheckers();
 		if (b.length == 0 || w.length == 0) {return true;}
 		
 		// Check if the current player can move
-		var checkers = this.isP1Turn? b : w;
-		var move = false;
+		let checkers = this.isP1Turn? b : w;
+		let move = false;
 		for (var i=0; i<checkers.length; i++) {
 			if (checkers[i].getMoves(true, this).length > 0) {
 				move = true;
@@ -94,8 +94,8 @@ function Game(squares,) {
 
 	/** Gets all the current squares with black checkers. */
 	this.getBlackCheckers = function() {
-		var checkers = [];
-		for (var i=0; i<squares.length; i++) {
+		let checkers = [];
+		for (let i=0; i<squares.length; i++) {
 			if (squares[i].isBlackChecker()) {checkers.push(squares[i]);}
 		}
 		return checkers;
@@ -103,8 +103,8 @@ function Game(squares,) {
 
 	/** Gets all the current squares with white checkers. */
 	this.getWhiteCheckers = function() {
-		var checkers = [];
-		for (var i=0; i<squares.length; i++) {
+		let checkers = [];
+		for (let i=0; i<squares.length; i++) {
 			if (squares[i].isWhiteChecker()) {checkers.push(squares[i]);}
 		}
 		return checkers;

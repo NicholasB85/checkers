@@ -30,7 +30,7 @@ function move(start, end, board) {
 	}
 	
 	// Update IDs
-	var endID = start.id;
+	let endID = start.id;
 	if (start.isBlackChecker() && end.y == 7) {
 		endID = ID_BLACK_KING;
 	} else if (start.isWhiteChecker() && end.y == 0) {
@@ -38,15 +38,15 @@ function move(start, end, board) {
 	}
 	end.setID(endID);
 	start.setID(ID_EMPTY);
-	var dist = start.dist(end), isSkip = Math.abs(dist.dx) == 2, otherSkip = false;
+	let dist = start.dist(end), isSkip = Math.abs(dist.dx) == 2, otherSkip = false;
 	if (isSkip) {
-		var middle = board.get(start.x + dist.dx/2, start.y + dist.dy/2);
+		let middle = board.get(start.x + dist.dx/2, start.y + dist.dy/2);
 		middle.setID(ID_EMPTY);
 		otherSkip = end.getSkips(board).length > 0;
 	}
 	
 	// Determine whether to switch turns right away
-	var isAI = (board.isP1Turn && board.isP1AI) || (!board.isP1Turn && board.isP2AI);
+	let isAI = (board.isP1Turn && board.isP1AI) || (!board.isP1Turn && board.isP2AI);
 	if (otherSkip) {
 		start.setSelected(false);
 		if (!isAI) {end.setSelected(true);}
@@ -71,9 +71,9 @@ function switchPlayer(start, end, board) {
 	// Update who's turn
 	board.isP1Turn = !board.isP1Turn;
 	htmlOptions.setAttribute('style','border-top: 5px solid '+(board.isP1Turn? 'black;':'white;'));
-	var isAI = (board.isP1Turn && board.isP1AI) || (!board.isP1Turn && board.isP2AI);
+	let isAI = (board.isP1Turn && board.isP1AI) || (!board.isP1Turn && board.isP2AI);
 	if (isAI) {
-		var aiMove = getAIMove(board.isP1Turn, board);
+		let aiMove = getAIMove(board.isP1Turn, board);
 		if (aiMove) {
 			timeOut2 = setTimeout(function(aiMove) {move(aiMove.start, aiMove.end, board);}, AI_DELAY, aiMove);
 		} else {gameover();}

@@ -94,13 +94,13 @@ function Square(x, y, id) {
 	* location of each skip. */
 	this.getSkips = function(board) {
 		if (this.isEmpty()) {return [];}
-		var skips = [], white = this.isWhiteChecker(), king = this.isKing();
-		var possibleMoves = [board.get(x-2,y-2),board.get(x+2,y-2),board.get(x-2,y+2),board.get(x+2,y+2)]
-		for (var i=0; i<possibleMoves.length; i++) {
-			var m = possibleMoves[i];
+		let skips = [], white = this.isWhiteChecker(), king = this.isKing();
+		let possibleMoves = [board.get(x-2,y-2),board.get(x+2,y-2),board.get(x-2,y+2),board.get(x+2,y+2)]
+		for (let i=0; i<possibleMoves.length; i++) {
+			let m = possibleMoves[i];
 			if (!m || !m.isEmpty()) {continue;}
-			var dist = this.dist(m);
-			var enemy = this.isEnemy(board.get(this.x + dist.dx/2, this.y + dist.dy/2));
+			let dist = this.dist(m);
+			let enemy = this.isEnemy(board.get(this.x + dist.dx/2, this.y + dist.dy/2));
 			if (king) {
 				if (enemy) {skips.push(m);}
 			} else {
